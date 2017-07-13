@@ -57,8 +57,8 @@ namespace pbcvt {
     }
 
 
-/**
- *
+/** Wrapper for cv::gpu::OpticalFlowDual_TVL1_GPU, located at
+ *  modules/gpu/src/tvl1flow.cpp
  */
     boost::python::tuple optflow_tvl1_gpu(cv::Mat im0, cv::Mat im1) {
 
@@ -71,8 +71,8 @@ namespace pbcvt {
     }
 
 
-/**
- *
+/** Wrapper for gpu::PyrLKOpticalFlow, located at 
+ *  modules/gpu/src/pyramids.cpp
  */
     boost::python::tuple pyrlk_optflow_spr(cv::Mat im0, cv::Mat im1,cv::Mat p0,
                                            cv::Mat p1) {
@@ -88,16 +88,24 @@ namespace pbcvt {
         return boost::python::make_tuple(statusr, p01r);
     }
 
-    void set_dev(int dev_id) {
+
+/** set gpu and fix flow parameters
+ *  increase winsize will improve precision and slow down
+ *  see http://docs.opencv.org/2.4/modules/video/doc/motion_analysis_and_object_tracking.html
+ */ 
+    void set_params(int dev_id, int win_size, int max_level) {
       cv::gpu::setDevice(dev_id);
-      flow.winSize = cv::Size(5,5);
-      flow.maxLevel = 1;
+      flow.winSize = cv::Size(win_size, win_size);
+      flow.maxLevel = max_level;
       flow.iters = 30;
       flow.useInitialFlow = true;
 
       //alg_tvl1.nscales = 1;
       //alg_tvl1.warps = 1;
     }
+
+/** release gpu usage
+ */
 
     void rel_mem() {
       flow.releaseMemory();
@@ -135,7 +143,7 @@ namespace pbcvt {
         def("dot2", dot2);
         def("optflow_tvl1_gpu", optflow_tvl1_gpu);
         def("pyrlk_optflow_spr", pyrlk_optflow_spr);
-        def("set_dev", set_dev);
+        def("set_params", set_params);
         def("rel_mem", rel_mem);
 
     }
