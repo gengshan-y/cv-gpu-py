@@ -1,13 +1,13 @@
-#cv-gpu-py
+# cv-gpu-py
 ==================
 
 Python wrapper for OpenCV C++ gpu::PyrLKOpticalFlow and gpu::OpticalFlowDual_TVL1_GPU . Based on [pyboostcvconverter](https://github.com/Algomorph/pyboostcvconverter).
 
-##Compatibility
+## Compatibility
 -----------------
 This code is tested on OpenCV 2.4.13 with CUDA and python 2.7.
 
-##Compiling & Trying Out Sample Code
+## Compiling & Trying Out Sample Code
 ----------------------
 1. `mkdir build; cd build; cmake ..; make`
 2. copy to python lib path e.g.,: `cp pbcvt.so ~/.local/lib/python2.7/site-packages/`
@@ -26,4 +26,6 @@ This code is tested on OpenCV 2.4.13 with CUDA and python 2.7.
 
 ## Test
 for 100 caculations, pyrlk with 16 points:
-![](gpu-cpu-time.png)
+<p align="center">
+  <img width="460" height="300" src="./gpu-cpu-time.png">
+</p>
