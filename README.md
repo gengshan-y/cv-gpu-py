@@ -3,7 +3,7 @@
 Python wrapper for OpenCV C++ gpu::PyrLKOpticalFlow and gpu::OpticalFlowDual_TVL1_GPU . Based on [pyboostcvconverter](https://github.com/Algomorph/pyboostcvconverter).
 
 ## Compatibility
-This code is tested on OpenCV 2.4.13 with CUDA and python 2.7.
+This code is tested on OpenCV 2.4.13 compiled with **CUDA** and python 2.7.
 
 ## Compiling & Trying Out Sample Code
 1. `mkdir build; cd build; cmake ..; make`
